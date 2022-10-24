@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
+
+    <title>Music Trivia</title>
+</head>
+<body>
+     <div class="title">
+        <h1>Music Production Trivia</h1>
+    </div>
+          <div class="display-container">
+            <h1 id="timer">25</h1>
+            <h1 id="question-text">Your Question will appear here and bellow are your four options</h1>
+            <h1 id="question-number">1/10</h1>
+          </div>
+    <div class="interactive-container">
+        <div id="hint">Hint?</div>
+            <div class="choices">
+                <div class="choicebox" id="choice1">Option 1</div>
+                <div class="choicebox" id="choice2">Option 2</div>
+                <div class="choicebox" id="choice3">Option 3</div>
+                <div class="choicebox" id="choice4">Option 4</div>
+            </div>
+            <div class="score">100</div>
+            <div id="next">Next</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
