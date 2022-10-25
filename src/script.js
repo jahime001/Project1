@@ -1,12 +1,17 @@
 const nextButton = document.querySelector('#next')
 const questionNumber = document.querySelector('#question-number')
 const questionText = document.querySelector('#question-text')
+const displayContainer = document.querySelector('.display-container')
 const choice1 = document.querySelector('#choice1')
 const choice2 = document.querySelector('#choice2')
 const choice3 = document.querySelector('#choice3')
 const choice4 = document.querySelector('#choice4')
 const timer = document.querySelector('#timer')
-
+const modal = document.querySelector('.modal')
+const modalSubtext = document.querySelector('#modal-subtext')
+const score = parseInt(document.querySelector('#score').innerHTML)
+console.log(score)
+let points = 0
 
 const qna = [
     {
@@ -22,13 +27,15 @@ const qna = [
         answer2: 'Rythm',
         answer3: 'Key',
         answer4: 'Bpm',
+        key: 'choice4'
     },
     {
-        question: 'Whats does BPM stand for?',
+        question: 'What does BPM stand for?',
         answer1: 'beats per meter',
         answer2: 'band per minute',
         answer3: 'beats per minute',
         answer4: 'bang per meter',
+        key: 'choice3'
     },
     {
         question: 'q3',
@@ -90,10 +97,8 @@ const qna = [
 
 let questionIndex = 0;
 let counter = 25
+let correctAnwser = '';
 
-let test = 2
-
-console.log(qna[questionIndex].answer2)
 
 nextButton.addEventListener('click', nextQuestion)
 
@@ -107,7 +112,35 @@ function nextQuestion(){
     choice2.innerHTML = qna[questionIndex].answer2
     choice3.innerHTML = qna[questionIndex].answer3
     choice4.innerHTML = qna[questionIndex].answer4
+    correctAnwser = qna[questionIndex].key
+    console.log(correctAnwser)
+
 }
+
+
+choice1.addEventListener('click', checkAnswer)
+choice2.addEventListener('click', checkAnswer)
+choice3.addEventListener('click', checkAnswer)
+choice4.addEventListener('click', checkAnswer)
+
+function checkAnswer(e){
+    if (e.target.id === correctAnwser ){
+        console.log('correct')
+        correct();
+        setTimeout(nextQuestion, 5000)
+    }else {
+        console.log('wrong')
+        // e.target.style.backgroundColor = 'red'
+    }
+}
+
+function correct(){
+    points = points + 100
+    console.log(points)
+
+}
+
+
 
 
 

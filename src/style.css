@@ -78,7 +78,7 @@ body{
 
 .choices{
     display: flex;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     gap: 30px;
     flex-wrap: wrap;
     
@@ -103,4 +103,79 @@ body{
 #next:active{
     box-shadow: none;
     transform: translateY(5px);
+}
+
+.modal{
+    background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	overflow: auto;
+	display: none;
+}
+
+#modal-textbox {
+	background-color: white;
+	height: 350px;
+	width: 550px;
+	border-radius: 2px;
+	margin: 150px auto;
+	box-shadow: 0 15px 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    font-family: 'Signika', sans-serif;
+
+}
+
+#modal-text{
+    color: rgb(138, 223, 138);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: slideup;
+    animation-duration: 4s;
+}
+
+#modal-subtext{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#new-score{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#score{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-size: 50px;
+}
+
+
+
+@keyframes slideUp {
+    0%,
+    50% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+     
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    
+    }
 }
