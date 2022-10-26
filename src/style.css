@@ -5,6 +5,7 @@ body{
 .title {
     margin-top: -10px;
     font-family: 'Signika', sans-serif;
+    text-align: center;
 
 }
 
@@ -60,11 +61,22 @@ body{
     margin-left: 30px;
     border-radius: 8px;
     box-shadow: #afd2b7 0 5px 0;
-    border: 1px solid yellow;
 }
 #hint:active{
     box-shadow: none;
     transform: translateY(5px);
+}
+#constant-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c7ddcc;
+    width: 100px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 30px;
+    border-radius: 8px;
+    box-shadow: #afd2b7 0 5px 0;
 }
 
 .interactive-container {
@@ -81,12 +93,21 @@ body{
     /* border: 1px solid red; */
     gap: 30px;
     flex-wrap: wrap;
+
     
 }
 
 .choicebox {
     padding: 75px;
     border: 1px solid;
+    border-radius: 15px;
+}
+.choicebox:hover{
+    box-shadow: #bfbfbf 5px 5px 5px;
+}
+.choicebox:active{
+    box-shadow: none;
+    transform: translateY(5px);
 }
 .starter-screen{
     background-color: rgba(0,0,0,0.4);
@@ -108,15 +129,13 @@ body{
 	margin: 150px auto;
 	box-shadow: 0 15px 15px rgba(0,0,0,0.2);
     border-radius: 10px;
-    /* display: flex; */
+    display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Signika', sans-serif;
 }
 #starter-screen-text{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
 }
 
 #start {
@@ -128,7 +147,9 @@ body{
     height: 50px;
     border-radius: 8px;
     box-shadow: #afd2b7 0 5px 0;
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
+    margin-left: 30px;
+
     
 }
 #start:active{
@@ -184,14 +205,28 @@ body{
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+
 }
 
-#score{
+#in-modal-score{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
     font-size: 50px;
+}
+#next{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-size: 50px;
+    border: 1px solid;
+    background-color: black;
+    color: white;
+}
+#next:hover{
+    color: rgb(45, 221, 95);
 }
 
 

@@ -1,4 +1,5 @@
 const startButton = document.querySelector('#start')
+const nextButton = document.querySelector('#next')
 const questionNumber = document.querySelector('#question-number')
 const questionText = document.querySelector('#question-text')
 const displayContainer = document.querySelector('.display-container')
@@ -10,7 +11,7 @@ const timer = document.querySelector('#timer')
 const modal = document.querySelector('.modal')
 const modalSubtext = document.querySelector('#modal-subtext')
 // const score = parseInt(document.querySelector('#score').innerHTML)
-console.log(score)
+// console.log(score)
 let points = 0
 
 const qna = [
@@ -27,7 +28,8 @@ const qna = [
         answer2: 'Rythm',
         answer3: 'Key',
         answer4: 'Bpm',
-        key: 'choice4'
+        key: 'choice1',
+        response: 'Tempo'
     },
     {
         question: 'What does BPM stand for?',
@@ -35,7 +37,8 @@ const qna = [
         answer2: 'band per minute',
         answer3: 'beats per minute',
         answer4: 'bang per meter',
-        key: 'choice3'
+        key: 'choice3',
+        response: 'beats per minute'
     },
     {
         question: 'q3',
@@ -132,7 +135,7 @@ function nextQuestion(){
     choice4.innerHTML = qna[questionIndex].answer4
     correctAnwser = qna[questionIndex].key
     console.log(correctAnwser)
-
+    modal.style.display = 'none'
 }
 
 
@@ -146,9 +149,10 @@ function checkAnswer(e){
     if (e.target.id === correctAnwser ){
         console.log('correct')
         correct();
-        setTimeout(nextQuestion, 5000)
+        // setTimeout(nextQuestion, 5000)
     }else {
         console.log('wrong')
+        incorrect()
         // e.target.style.backgroundColor = 'red'
     }
 }
@@ -156,12 +160,32 @@ function checkAnswer(e){
 function correct(){
     points = points + 100
     console.log(points)
-    document.querySelector('#score').innerHTML = points
+    document.querySelector('#modal-text').innerHTML = "Correct!"
+    document.querySelector('#modal-text').style.color = 'green'
+    document.querySelector('#modal-subtext').innerHTML = "+100 points!"
+    document.querySelector('#new-score').innerHTML = "Your new score is:"
+    document.querySelector('#constant-score').innerHTML = points
+    document.querySelector('#in-modal-score').innerHTML = points
     setTimeout(() => {
         modal.style.display = 'block'
       }, 1000);
     return false;
 }
+
+function incorrect(){
+    console.log(points)
+    document.querySelector('#modal-text').innerHTML = `Incorrect, the correct answer is ${qna[questionIndex].response}.`
+    document.querySelector('#modal-text').style.color = 'red'
+    document.querySelector('#modal-subtext').innerHTML = " "
+    document.querySelector('#new-score').innerHTML = "Your score remains at:"
+    document.querySelector('#constant-score').innerHTML = points
+    document.querySelector('#in-modal-score').innerHTML = points
+    setTimeout(() => {
+        modal.style.display = 'block'
+      }, 1000);
+    return false;
+}
+
 
 
 
