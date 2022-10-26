@@ -1,4 +1,4 @@
-const nextButton = document.querySelector('#next')
+const startButton = document.querySelector('#start')
 const questionNumber = document.querySelector('#question-number')
 const questionText = document.querySelector('#question-text')
 const displayContainer = document.querySelector('.display-container')
@@ -9,7 +9,7 @@ const choice4 = document.querySelector('#choice4')
 const timer = document.querySelector('#timer')
 const modal = document.querySelector('.modal')
 const modalSubtext = document.querySelector('#modal-subtext')
-const score = parseInt(document.querySelector('#score').innerHTML)
+// const score = parseInt(document.querySelector('#score').innerHTML)
 console.log(score)
 let points = 0
 
@@ -100,6 +100,24 @@ let counter = 25
 let correctAnwser = '';
 
 
+startButton.addEventListener('click', starterQuestion)
+
+function starterQuestion(){
+    questionIndex = questionIndex + 1
+    console.log(questionIndex)
+    questionNumber.innerHTML = `${questionIndex}/10`
+    console.log(qna[questionIndex])
+    questionText.innerHTML = qna[questionIndex].question
+    choice1.innerHTML = qna[questionIndex].answer1
+    choice2.innerHTML = qna[questionIndex].answer2
+    choice3.innerHTML = qna[questionIndex].answer3
+    choice4.innerHTML = qna[questionIndex].answer4
+    correctAnwser = qna[questionIndex].key
+    console.log(correctAnwser)
+    document.querySelector('.starter-screen').style.display = 'none'
+
+}
+
 nextButton.addEventListener('click', nextQuestion)
 
 function nextQuestion(){
@@ -116,6 +134,7 @@ function nextQuestion(){
     console.log(correctAnwser)
 
 }
+
 
 
 choice1.addEventListener('click', checkAnswer)
@@ -137,7 +156,11 @@ function checkAnswer(e){
 function correct(){
     points = points + 100
     console.log(points)
-
+    document.querySelector('#score').innerHTML = points
+    setTimeout(() => {
+        modal.style.display = 'block'
+      }, 1000);
+    return false;
 }
 
 

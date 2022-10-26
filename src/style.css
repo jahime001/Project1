@@ -88,8 +88,38 @@ body{
     padding: 75px;
     border: 1px solid;
 }
+.starter-screen{
+    background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	overflow: auto;
+	/* display: none; */
 
-#next {
+}
+#starter-screen-textbox{
+    background-color: white;
+	height: 350px;
+	width: 550px;
+	border-radius: 2px;
+	margin: 150px auto;
+	box-shadow: 0 15px 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    font-family: 'Signika', sans-serif;
+}
+#starter-screen-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#start {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,8 +129,9 @@ body{
     border-radius: 8px;
     box-shadow: #afd2b7 0 5px 0;
     border: 1px solid yellow;
+    
 }
-#next:active{
+#start:active{
     box-shadow: none;
     transform: translateY(5px);
 }
