@@ -127,7 +127,7 @@ const qna = [
         hint: ['choice3', 'choice1']
     },
 ]
-console.log(qna[1].hint[1])
+
 
 let questionIndex = 0;
 let counter = 15;
@@ -192,7 +192,7 @@ function nextQuestion(){
     }
 }
 
-console.log(hintIndex)
+
 
 choice1.addEventListener('click', checkAnswer)
 choice2.addEventListener('click', checkAnswer)
