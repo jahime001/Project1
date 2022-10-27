@@ -10,10 +10,14 @@ const choice4 = document.querySelector('#choice4')
 const timer = document.querySelector('#timer')
 const modal = document.querySelector('.modal')
 const modalSubtext = document.querySelector('#modal-subtext')
+const hint = document.querySelector('#hint')
 // const score = parseInt(document.querySelector('#score').innerHTML)
 // console.log(score)
 let points = 0
-
+const correctAudio = new Audio("/content/correct.mp3")
+const incorrectAudio = new Audio("/content/ES_Glitch Beep - SFX Producer.mp3")
+const clickAudio = new Audio("/content/Switch Click .mp3")
+let hintIndex = 0
 const qna = [
     {
         question: 'Your Question will appear here and bellow are your four options',
@@ -30,7 +34,7 @@ const qna = [
         answer4: 'Bpm',
         key: 'choice1',
         response: 'Tempo',
-        hint: ''
+        hint: ['choice2', 'choice4']
     },
     {
         question: 'What does BPM stand for?',
@@ -40,6 +44,7 @@ const qna = [
         answer4: 'bang per meter',
         key: 'choice3',
         response: 'beats per minute',
+        hint: ['choice2', 'choice1']
     },
     {
         question: 'How many beats are in a bar?',
@@ -49,6 +54,7 @@ const qna = [
         answer4: '8',
         key: 'choice2',
         response: '4',
+        hint: ['choice1', 'choice4']
     },
     {
         question: 'Which one of these is NOT a DAW?',
@@ -58,6 +64,7 @@ const qna = [
         answer4: 'Logic Pro',
         key: 'choice3',
         response: 'Davinci Resolve',
+        hint: ['choice1', 'choice2']
     },
     {
         question: 'What is used to stay on tempo?',
@@ -67,6 +74,7 @@ const qna = [
         answer4: 'Timer',
         key: 'choice1',
         response: 'Metronome',
+        hint: ['choice2', 'choice4']
     },
     {
         question: 'Which is NOT an audio file?',
@@ -76,6 +84,7 @@ const qna = [
         answer4: '.png',
         key: 'choice4',
         response: '.png',
+        hint: ['choice2', 'choice3']
     },
     {
         question: 'self-contained pieces of code that can be plugged in to DAWs to enhance their functionality are know as?',
@@ -85,6 +94,7 @@ const qna = [
         answer4: 'Files',
         key: 'choice2',
         response: 'Plugins',
+        hint: ['choice1', 'choice3'],
     },
     {
         question: 'Which is not a valid plugin format?',
@@ -94,6 +104,7 @@ const qna = [
         answer4: 'AAX',
         key: 'choice1',
         response: 'EXE',
+        hint: ['choice3', 'choice4']
     },
     {
         question: 'What is the average bpm for a NY Drill song?',
@@ -103,17 +114,20 @@ const qna = [
         answer4: '180',
         key: 'choice3',
         response: '140',
+        hint: ['choice2', 'choice1']
     },
     {
         question: 'What is the average bpm for a Afro beats song?',
         answer1: '20',
         answer2: '100',
         answer3: '140',
-        answer4: '100',
+        answer4: '180',
         key: 'choice2',
         response: '100',
+        hint: ['choice3', 'choice1']
     },
 ]
+console.log(qna[1].hint[1])
 
 let questionIndex = 0;
 let counter = 15;
@@ -131,7 +145,6 @@ function myTimer() {
 function myStopFunction() {
     clearInterval(myInterval);
   }
-
 
 startButton.addEventListener('click', starterQuestion)
 
@@ -157,7 +170,8 @@ function starterQuestion(){
 nextButton.addEventListener('click', nextQuestion)
 
 function nextQuestion(){
-    myStopFunction
+    myInterval = setInterval(myTimer, 1000);
+    myTimer()
     questionIndex = questionIndex + 1
     console.log(questionIndex)
     if(questionIndex < 11){
@@ -171,17 +185,14 @@ function nextQuestion(){
     correctAnwser = qna[questionIndex].key
     console.log(correctAnwser)
     modal.style.display = 'none'
-    counter = 15;
+    counter = 16;
     myTimer()
-    if(counter === 0){
-        outOfTime()
-    }
     } else {
         endScreen()
     }
 }
 
-
+console.log(hintIndex)
 
 choice1.addEventListener('click', checkAnswer)
 choice2.addEventListener('click', checkAnswer)
@@ -189,18 +200,28 @@ choice3.addEventListener('click', checkAnswer)
 choice4.addEventListener('click', checkAnswer)
 
 function checkAnswer(e){
+    myStopFunction()
     if (e.target.id === correctAnwser ){
         console.log('correct')
         correct();
+        document.querySelector('#choice1').style.backgroundColor = 'rgb(81, 143, 230)';
+document.querySelector('#choice2').style.backgroundColor = 'rgb(176, 92, 221)';
+document.querySelector('#choice3').style.backgroundColor = 'rgb(81, 230, 116)';
+document.querySelector('#choice4').style.backgroundColor = 'rgb(230, 185, 81)';
         // setTimeout(nextQuestion, 5000)
     }else {
         console.log('wrong')
         incorrect()
+        document.querySelector('#choice1').style.backgroundColor = 'rgb(81, 143, 230)';
+document.querySelector('#choice2').style.backgroundColor = 'rgb(176, 92, 221)';
+document.querySelector('#choice3').style.backgroundColor = 'rgb(81, 230, 116)';
+document.querySelector('#choice4').style.backgroundColor = 'rgb(230, 185, 81)';
         // e.target.style.backgroundColor = 'red'
     }
 }
 
 function correct(){
+    correctAudio.play()
     points = points + 100
     console.log(points)
     document.querySelector('#modal-text').innerHTML = "Correct!"
@@ -211,11 +232,12 @@ function correct(){
     document.querySelector('#in-modal-score').innerHTML = points
     setTimeout(() => {
         modal.style.display = 'block'
-      }, 1000);
+      }, 100);
     return false;
 }
 
 function incorrect(){
+    incorrectAudio.play()
     console.log(points)
     document.querySelector('#modal-text').innerHTML = `Incorrect, the correct answer is ${qna[questionIndex].response}.`
     document.querySelector('#modal-text').style.color = 'red'
@@ -225,10 +247,12 @@ function incorrect(){
     document.querySelector('#in-modal-score').innerHTML = points
     setTimeout(() => {
         modal.style.display = 'block'
-      }, 1000);
+      }, 100);
     return false;
 }
 function outOfTime(){
+    myStopFunction()
+    counter = 16;
     console.log(points)
     document.querySelector('#modal-text').innerHTML = 'Out Of Time!'
     document.querySelector('#modal-text').style.color = 'red'
@@ -236,9 +260,13 @@ function outOfTime(){
     document.querySelector('#new-score').innerHTML = "Your score remains at:"
     document.querySelector('#constant-score').innerHTML = `Score: ${points}`
     document.querySelector('#in-modal-score').innerHTML = points
+    document.querySelector('#choice1').style.backgroundColor = 'rgb(81, 143, 230)';
+document.querySelector('#choice2').style.backgroundColor = 'rgb(176, 92, 221)';
+document.querySelector('#choice3').style.backgroundColor = 'rgb(81, 230, 116)';
+document.querySelector('#choice4').style.backgroundColor = 'rgb(230, 185, 81)';
     setTimeout(() => {
         modal.style.display = 'block'
-      }, 1000);
+      }, 100);
     return false;
 }
 
@@ -253,7 +281,7 @@ function endScreen(){
     document.querySelector('#in-modal-score').style.color = 'gold'
     setTimeout(() => {
         modal.style.display = 'block'
-      }, 1000);
+      }, 100);
     return false;
     }else if(points >= 400){
         document.querySelector('#modal-text').innerHTML = "Not Bad!"
@@ -265,7 +293,7 @@ function endScreen(){
         document.querySelector('#in-modal-score').style.color = 'gold'
         setTimeout(() => {
             modal.style.display = 'block'
-          }, 1000);
+          }, 100);
         return false;
     } else {
         document.querySelector('#modal-text').innerHTML = "Good try but i think you need to do more learning"
@@ -277,10 +305,27 @@ function endScreen(){
         document.querySelector('#in-modal-score').style.color = 'gold'
         setTimeout(() => {
             modal.style.display = 'block'
-          }, 1000);
+          }, 100);
         return false;
+        
+    }
+
+}
+let hintLeft = 3
+hint.addEventListener('click', showHint)
+
+function showHint(){
+    hintLeft--
+    if(hintLeft == 0){
+        alert('sorry you have no hints left')
+    }else{
+    document.querySelector(`#${qna[questionIndex].hint[1]}`).style.backgroundColor = 'gray';
+    document.querySelector(`#${qna[questionIndex].hint[0]}`).style.backgroundColor = 'gray';
     }
 }
 
 
-
+document.querySelector('#choice1').style.backgroundColor = 'rgb(81, 143, 230)';
+document.querySelector('#choice2').style.backgroundColor = 'rgb(176, 92, 221)';
+document.querySelector('#choice3').style.backgroundColor = 'rgb(81, 230, 116)';
+document.querySelector('#choice4').style.backgroundColor = 'rgb(230, 185, 81)';

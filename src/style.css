@@ -1,18 +1,20 @@
 body{
     margin: 0%;
+    background-color:  #8c18b6;
 }
 
 .title {
     margin-top: -10px;
     font-family: 'Signika Negative', sans-serif;
     text-align: center;
+    
 
 }
 
 
 .display-container {
     display: flex;
-    background-image: linear-gradient(to bottom right, #9d5ee5, #75c9b7);
+    background-color: rgb(92, 109, 218);
     height: 400px;
     width: 100%;
     align-items: center;
@@ -89,7 +91,7 @@ body{
     height: 525px;
     justify-content: center;
     align-items: center;
-    background-color: #dbdbdb;
+    background-color: #8c18b6;
 }
 
 .choices{
@@ -111,24 +113,37 @@ body{
     justify-content: center;
     align-items: center;
     border-radius: 50px;
-background: #e0e0e0;
-box-shadow:  20px 20px 100px #8f8f8f,
-             -20px -20px 100px #ffffff;
     width: 250px;
     text-align: center;
     height: 200px;
     font-size: 50px;
+    font-family: 'Cabin Sketch', cursive;
+    color: white;
 }
 .choicebox:hover{
     box-shadow: #bfbfbf 5px 5px 5px;
 }
 .choicebox:active{
     box-shadow: none;
-    /* transform: translateY(5px); */
+    transform: translateY(5px);
     border-radius: 50px;
-background: #e0e0e0;
-box-shadow: inset 39px 39px 78px #8f8f8f,
-            inset -39px -39px 78px #ffffff;
+
+}
+#choice1{
+    background-color: rgb(81, 143, 230);
+    box-shadow: rgb(51, 91, 148) 5px 5px 0;
+}
+#choice2{
+    background-color: rgb(176, 92, 221);
+    box-shadow: rgb(97, 50, 122) 5px 5px 0;
+}
+#choice3{
+    background-color: rgb(81, 230, 116);
+    box-shadow: rgb(57, 162, 81) 5px 5px 0;
+}
+#choice4{
+    background-color: rgb(230, 185, 81);
+    box-shadow: rgb(148, 119, 51) 5px 5px 0;
 }
 .starter-screen{
     background-color: rgba(0,0,0,0.4);
@@ -213,6 +228,7 @@ box-shadow: inset 39px 39px 78px #8f8f8f,
     align-items: center;
     justify-content: center;
     font-family: 'Signika', sans-serif;
+    text-align: center;
 
 }
 
