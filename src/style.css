@@ -4,7 +4,7 @@ body{
 
 .title {
     margin-top: -10px;
-    font-family: 'Signika', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
     text-align: center;
 
 }
@@ -55,12 +55,13 @@ body{
     align-items: center;
     justify-content: center;
     background-color: #c7ddcc;
-    width: 100px;
-    height: 50px;
+    width: 200px;
+    height: 100px;
     margin-top: 30px;
     margin-left: 30px;
     border-radius: 8px;
     box-shadow: #afd2b7 0 5px 0;
+    font-size: 35px;
 }
 #hint:active{
     box-shadow: none;
@@ -71,12 +72,14 @@ body{
     align-items: center;
     justify-content: center;
     background-color: #c7ddcc;
-    width: 100px;
-    height: 50px;
+    width: 200px;
+    height: 100px;
     margin-top: 30px;
-    margin-left: 30px;
+    margin-right: 30px;
     border-radius: 8px;
     box-shadow: #afd2b7 0 5px 0;
+    font-size: 35px;
+    
 }
 
 .interactive-container {
@@ -86,28 +89,46 @@ body{
     height: 525px;
     justify-content: center;
     align-items: center;
+    background-color: #dbdbdb;
 }
 
 .choices{
     display: flex;
-    /* border: 1px solid red; */
     gap: 30px;
     flex-wrap: wrap;
+    width: 600px;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 100px;
+    margin-right: 100px;
 
     
 }
 
 .choicebox {
-    padding: 75px;
-    border: 1px solid;
-    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+background: #e0e0e0;
+box-shadow:  20px 20px 100px #8f8f8f,
+             -20px -20px 100px #ffffff;
+    width: 250px;
+    text-align: center;
+    height: 200px;
+    font-size: 50px;
 }
 .choicebox:hover{
     box-shadow: #bfbfbf 5px 5px 5px;
 }
 .choicebox:active{
     box-shadow: none;
-    transform: translateY(5px);
+    /* transform: translateY(5px); */
+    border-radius: 50px;
+background: #e0e0e0;
+box-shadow: inset 39px 39px 78px #8f8f8f,
+            inset -39px -39px 78px #ffffff;
 }
 .starter-screen{
     background-color: rgba(0,0,0,0.4);
@@ -137,6 +158,18 @@ body{
 #starter-screen-text{
     
 }
+#welcome{
+    text-align: center;
+}
+#rules{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#rules-text{
+ margin-left: 10px;
+}
 
 #start {
     display: flex;
@@ -147,8 +180,7 @@ body{
     height: 50px;
     border-radius: 8px;
     box-shadow: #afd2b7 0 5px 0;
-    /* border: 1px solid yellow; */
-    margin-left: 30px;
+    margin-left: 130px;
 
     
 }

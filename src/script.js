@@ -48,6 +48,7 @@ const qna = [
         answer3: '6',
         answer4: '8',
         key: 'choice2',
+        response: '4',
     },
     {
         question: 'Which one of these is NOT a DAW?',
@@ -56,6 +57,7 @@ const qna = [
         answer3: 'Davince Resolve',
         answer4: 'Logic Pro',
         key: 'choice3',
+        response: 'Davinci Resolve',
     },
     {
         question: 'What is used to stay on tempo?',
@@ -64,6 +66,7 @@ const qna = [
         answer3: 'Kick',
         answer4: 'Timer',
         key: 'choice1',
+        response: 'Metronome',
     },
     {
         question: 'Which is NOT an audio file?',
@@ -71,7 +74,8 @@ const qna = [
         answer2: '.wave',
         answer3: '.m4a',
         answer4: '.png',
-        key: 'choice4'
+        key: 'choice4',
+        response: '.png',
     },
     {
         question: 'self-contained pieces of code that can be plugged in to DAWs to enhance their functionality are know as?',
@@ -79,15 +83,17 @@ const qna = [
         answer2: 'Plugins',
         answer3: 'Extensions',
         answer4: 'Files',
-        key: 'choice2'
+        key: 'choice2',
+        response: 'Plugins',
     },
     {
         question: 'Which is not a valid plugin format?',
-        answer1: 'JPG',
+        answer1: 'EXE',
         answer2: 'VST',
         answer3: 'AU',
         answer4: 'AAX',
-        key: 'choice1'
+        key: 'choice1',
+        response: 'EXE',
     },
     {
         question: 'What is the average bpm for a NY Drill song?',
@@ -95,7 +101,8 @@ const qna = [
         answer2: '100',
         answer3: '140',
         answer4: '180',
-        key: 'choice3'
+        key: 'choice3',
+        response: '140',
     },
     {
         question: 'What is the average bpm for a Afro beats song?',
@@ -103,18 +110,33 @@ const qna = [
         answer2: '100',
         answer3: '140',
         answer4: '100',
-        key: 'choice2'
+        key: 'choice2',
+        response: '100',
     },
 ]
 
 let questionIndex = 0;
-let counter = 25
+let counter = 15;
 let correctAnwser = '';
+let myInterval
+function myTimer() {
+    // preventDefault();
+    counter--
+        if(counter> -1){
+            timer.innerHTML = counter
+        }else{
+            outOfTime() 
+        }
+}
+function myStopFunction() {
+    clearInterval(myInterval);
+  }
 
 
 startButton.addEventListener('click', starterQuestion)
 
 function starterQuestion(){
+    // preventDefault()
     questionIndex = questionIndex + 1
     console.log(questionIndex)
     questionNumber.innerHTML = `${questionIndex}/10`
@@ -127,13 +149,15 @@ function starterQuestion(){
     correctAnwser = qna[questionIndex].key
     console.log(correctAnwser)
     document.querySelector('.starter-screen').style.display = 'none'
-
+    myInterval = setInterval(myTimer, 1000);
+    myTimer()
 
 }
 
 nextButton.addEventListener('click', nextQuestion)
 
 function nextQuestion(){
+    myStopFunction
     questionIndex = questionIndex + 1
     console.log(questionIndex)
     if(questionIndex < 11){
@@ -147,12 +171,16 @@ function nextQuestion(){
     correctAnwser = qna[questionIndex].key
     console.log(correctAnwser)
     modal.style.display = 'none'
+    counter = 15;
+    myTimer()
+    if(counter === 0){
+        outOfTime()
+    }
     } else {
         endScreen()
     }
 }
-let lookingFor = console.log(qna[questionIndex].response)
-    console.log(lookingFor)
+
 
 
 choice1.addEventListener('click', checkAnswer)
@@ -179,7 +207,7 @@ function correct(){
     document.querySelector('#modal-text').style.color = 'green'
     document.querySelector('#modal-subtext').innerHTML = "+100 points!"
     document.querySelector('#new-score').innerHTML = "Your new score is:"
-    document.querySelector('#constant-score').innerHTML = points
+    document.querySelector('#constant-score').innerHTML = `Score: ${points}`
     document.querySelector('#in-modal-score').innerHTML = points
     setTimeout(() => {
         modal.style.display = 'block'
@@ -189,18 +217,30 @@ function correct(){
 
 function incorrect(){
     console.log(points)
-    document.querySelector('#modal-text').innerHTML = `Incorrect, the correct answer is ${lookingFor}.`
+    document.querySelector('#modal-text').innerHTML = `Incorrect, the correct answer is ${qna[questionIndex].response}.`
     document.querySelector('#modal-text').style.color = 'red'
     document.querySelector('#modal-subtext').innerHTML = " "
     document.querySelector('#new-score').innerHTML = "Your score remains at:"
-    document.querySelector('#constant-score').innerHTML = points
+    document.querySelector('#constant-score').innerHTML = `Score: ${points}`
     document.querySelector('#in-modal-score').innerHTML = points
     setTimeout(() => {
         modal.style.display = 'block'
       }, 1000);
     return false;
 }
-
+function outOfTime(){
+    console.log(points)
+    document.querySelector('#modal-text').innerHTML = 'Out Of Time!'
+    document.querySelector('#modal-text').style.color = 'red'
+    document.querySelector('#modal-subtext').innerHTML = `the correct answer was ${qna[questionIndex].response}.`
+    document.querySelector('#new-score').innerHTML = "Your score remains at:"
+    document.querySelector('#constant-score').innerHTML = `Score: ${points}`
+    document.querySelector('#in-modal-score').innerHTML = points
+    setTimeout(() => {
+        modal.style.display = 'block'
+      }, 1000);
+    return false;
+}
 
 function endScreen(){
     if(points >= 800){
@@ -208,7 +248,7 @@ function endScreen(){
     document.querySelector('#modal-text').style.color = 'black'
     document.querySelector('#modal-subtext').innerHTML = ""
     document.querySelector('#new-score').innerHTML = "Your finishing  score is:"
-    document.querySelector('#constant-score').innerHTML = points
+    document.querySelector('#constant-score').innerHTML = `Score: ${points}`
     document.querySelector('#in-modal-score').innerHTML = points
     document.querySelector('#in-modal-score').style.color = 'gold'
     setTimeout(() => {
@@ -216,17 +256,31 @@ function endScreen(){
       }, 1000);
     return false;
     }else if(points >= 400){
-
+        document.querySelector('#modal-text').innerHTML = "Not Bad!"
+        document.querySelector('#modal-text').style.color = 'black'
+        document.querySelector('#modal-subtext').innerHTML = ""
+        document.querySelector('#new-score').innerHTML = "Your finishing  score is:"
+        document.querySelector('#constant-score').innerHTML = `Score: ${points}`
+        document.querySelector('#in-modal-score').innerHTML = points
+        document.querySelector('#in-modal-score').style.color = 'gold'
+        setTimeout(() => {
+            modal.style.display = 'block'
+          }, 1000);
+        return false;
     } else {
-
+        document.querySelector('#modal-text').innerHTML = "Good try but i think you need to do more learning"
+        document.querySelector('#modal-text').style.color = 'black'
+        document.querySelector('#modal-subtext').innerHTML = ""
+        document.querySelector('#new-score').innerHTML = "Your finishing  score is:"
+        document.querySelector('#constant-score').innerHTML = `Score: ${points}`
+        document.querySelector('#in-modal-score').innerHTML = points
+        document.querySelector('#in-modal-score').style.color = 'gold'
+        setTimeout(() => {
+            modal.style.display = 'block'
+          }, 1000);
+        return false;
     }
 }
 
 
 
-// setInterval(function(){
-//     counter--
-//     if(counter>=0){
-//         timer.innerHTML = counter
-//     }
-// }, 1000)

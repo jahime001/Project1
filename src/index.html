@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&display=swap" rel="stylesheet">
 
     <title>Music Trivia</title>
 </head>
@@ -16,8 +18,8 @@
         <h1>Music Production Trivia</h1>
     </div>
           <div class="display-container">
-            <h1 id="timer">25</h1>
-            <h1 id="question-text">Your Question will appear here and bellow are your four options</h1>
+            <h1 id="timer">15</h1>
+            <h1 id="question-text"></h1>
             <h1 id="question-number">1/10</h1>
           </div>
     <div class="interactive-container">
@@ -28,16 +30,16 @@
                 <div class="choicebox" id="choice3">Option 3</div>
                 <div class="choicebox" id="choice4">Option 4</div>
             </div>
-            <div class="score" id="constant-score">0</div>
+            <div class="score" id="constant-score">Score: 0</div>
             
      </div>
 
      <div class="starter-screen">
         <div id="starter-screen-textbox">
             <div id="starter-screen-text">
-            <h1>Welcome to Music Production Trivia</h1>
-            <h1>Rules:</h1>
-            <ol>
+            <h1 id="welcome">Welcome to<br>Music Production Trivia</h1>
+            <h1 id="rules">Rules:</h1>
+            <ol id="rules-text">
                 <li>You have 25 secoonds to choose an answer.</li>
                 <li>You only get one guess for each question.</li>
                 <li>You get 2 hints.</li>
