@@ -12,9 +12,9 @@ const modal = document.querySelector('.modal')
 const modalSubtext = document.querySelector('#modal-subtext')
 const hint = document.querySelector('#hint')
 let points = 0
-const correctAudio = new Audio("/correct.mp3")
-const incorrectAudio = new Audio("/ES_Glitch Beep - SFX Producer.mp3")
-const clickAudio = new Audio("/Switch Click .mp3")
+const correctAudio = new Audio(".correct.mp3")
+const incorrectAudio = new Audio("./ES_Glitch Beep - SFX Producer.mp3")
+const clickAudio = new Audio("./Switch Click .mp3")
 let hintIndex = 0
 //this object holds all the questions and answers
 const qna = [
@@ -202,7 +202,8 @@ function nextQuestion(){
 choice1.addEventListener('click', checkAnswer)
 choice2.addEventListener('click', checkAnswer)
 choice3.addEventListener('click', checkAnswer)
-choice4.addEventListener('click', checkAnswer) //each button will run a check answer function when clicked. in the object each question has a key with the value of the id of the correct button. this function checked]s to see if the key matches up with the id of the div/button you clicked of so run the correct funtion if not run the incorrect funtion
+choice4.addEventListener('click', checkAnswer) 
+//each button will run a check answer function when clicked. in the object each question has a key with the value of the id of the correct button. this function checked]s to see if the key matches up with the id of the div/button you clicked of so run the correct funtion if not run the incorrect funtion
 
 function checkAnswer(e){
     myStopFunction()
@@ -329,8 +330,3 @@ function showHint(){
     }
 }
 
-
-document.querySelector('#choice1').style.backgroundColor = 'rgb(81, 143, 230)';
-document.querySelector('#choice2').style.backgroundColor = 'rgb(176, 92, 221)';
-document.querySelector('#choice3').style.backgroundColor = 'rgb(81, 230, 116)';
-document.querySelector('#choice4').style.backgroundColor = 'rgb(230, 185, 81)';
