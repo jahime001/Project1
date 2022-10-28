@@ -10,6 +10,8 @@ This is a trivia about music production. As this is my first project my goesl wa
 - Node.js
 - Git
 
+### Pictures
+![wireframe](Screen Shot 2022-10-27 at 11.36.09 PM.png "wireframe")
 
 ### Launch
 Here is the link to  [Music Production Trivia](https://jahime001.github.io/Project1/).
