@@ -11,13 +11,12 @@ const timer = document.querySelector('#timer')
 const modal = document.querySelector('.modal')
 const modalSubtext = document.querySelector('#modal-subtext')
 const hint = document.querySelector('#hint')
-// const score = parseInt(document.querySelector('#score').innerHTML)
-// console.log(score)
 let points = 0
 const correctAudio = new Audio("/content/correct.mp3")
 const incorrectAudio = new Audio("/content/ES_Glitch Beep - SFX Producer.mp3")
 const clickAudio = new Audio("/content/Switch Click .mp3")
 let hintIndex = 0
+//this object holds all the questions and answers
 const qna = [
     {
         question: 'Your Question will appear here and bellow are your four options',
@@ -197,7 +196,7 @@ function nextQuestion(){
 choice1.addEventListener('click', checkAnswer)
 choice2.addEventListener('click', checkAnswer)
 choice3.addEventListener('click', checkAnswer)
-choice4.addEventListener('click', checkAnswer)
+choice4.addEventListener('click', checkAnswer) //each button will run a check answer function when clicked. in the object each question has a key with the value of the id of the correct button. this function checked]s to see if the key matches up with the id of the div/button you clicked of so run the correct funtion if not run the incorrect funtion
 
 function checkAnswer(e){
     myStopFunction()
@@ -219,7 +218,7 @@ document.querySelector('#choice4').style.backgroundColor = 'rgb(230, 185, 81)';
         // e.target.style.backgroundColor = 'red'
     }
 }
-
+//correct funtion add 100 points to you score
 function correct(){
     correctAudio.play()
     points = points + 100
@@ -235,7 +234,7 @@ function correct(){
       }, 100);
     return false;
 }
-
+//incorect function leaves it the same
 function incorrect(){
     incorrectAudio.play()
     console.log(points)
