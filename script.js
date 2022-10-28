@@ -12,9 +12,9 @@ const modal = document.querySelector('.modal')
 const modalSubtext = document.querySelector('#modal-subtext')
 const hint = document.querySelector('#hint')
 let points = 0
-const correctAudio = new Audio("/content/correct.mp3")
-const incorrectAudio = new Audio("/content/ES_Glitch Beep - SFX Producer.mp3")
-const clickAudio = new Audio("/content/Switch Click .mp3")
+const correctAudio = new Audio("/correct.mp3")
+const incorrectAudio = new Audio("/ES_Glitch Beep - SFX Producer.mp3")
+const clickAudio = new Audio("/Switch Click .mp3")
 let hintIndex = 0
 //this object holds all the questions and answers
 const qna = [
@@ -144,6 +144,12 @@ function myTimer() {
 function myStopFunction() {
     clearInterval(myInterval);
   }
+  choice1.addEventListener('mouseover', clickAudio.play())
+  choice2.addEventListener('mouseover', clickAudio.play())
+  choice3.addEventListener('mouseover', clickAudio.play())
+  choice4.addEventListener('mousover', clickAudio.play())
+
+
 
 startButton.addEventListener('click', starterQuestion)
 
